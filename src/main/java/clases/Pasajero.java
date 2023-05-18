@@ -1,10 +1,10 @@
 package clases;
 
 public class Pasajero extends Persona{
-
-	public Pasajero(String nombre, String apellido, char genero) {
+	private String pasaporte;
+	public Pasajero(String nombre, String apellido, char genero, String pasaporte) {
 		super(nombre, apellido, genero);
-		// TODO Auto-generated constructor stub
+		this.pasaporte = pasaporte;
 	}
 	
 

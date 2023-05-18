@@ -11,7 +11,7 @@ public class Ventana extends JFrame{
 	
 	public Ventana() {
 		this.setSize(1200, 800);
-		this.setTitle("Programa de prueba de clase");
+		this.setTitle("Escaner de Cielo");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setContentPane(new PantallaLogin(this));

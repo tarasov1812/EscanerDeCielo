@@ -1,6 +1,6 @@
 package clases;
 
-public class CosaConNombre {
+public abstract class CosaConNombre {
 	private String nombre;
 
 	public CosaConNombre(String nombre) {

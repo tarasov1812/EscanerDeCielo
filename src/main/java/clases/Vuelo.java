@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.Map.Entry;
+import java.util.Random;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,12 +24,12 @@ public class Vuelo {
 	private Aeropuerto salida;
 	private Aeropuerto destino;
 	private Aerolinea aerolinea;
-	private ArrayList<Cliente> pasajeros;
 	private LocalDateTime fechaDeSalida;
 	private LocalDateTime fechaDeLlegada;
 	private HashMap<String, Billete> billetes;
 	private byte numeroDeTransbordos;
 	private Avion avion;
+	Random r = new Random();
 	
 	public Vuelo(String numeroDeVuelo, Aeropuerto salida, Aeropuerto destino,
 			LocalDateTime fechaDeSalida, LocalDateTime fechaDeLlegada, Avion avion, byte numeroDeTransbordos, Aerolinea aerolinea) {
@@ -76,20 +77,6 @@ public class Vuelo {
 	public void setDestino(Aeropuerto destino) {
 		this.destino = destino;
 	}
-
-
-
-	public ArrayList<Cliente> getPasajeros() {
-		return pasajeros;
-	}
-
-
-
-	public void setPasajeros(ArrayList<Cliente> pasajeros) {
-		this.pasajeros = pasajeros;
-	}
-
-
 
 	public LocalDateTime getFechaDeSalida() {
 		return fechaDeSalida;
@@ -164,17 +151,12 @@ public class Vuelo {
 
 
 
-	public static ArrayList<Vuelo> buscarVuelo (Aeropuerto salida, Aeropuerto destino, Date fechaSalida) {
+	public static ArrayList<Vuelo> buscarVuelo (Aeropuerto salida, Aeropuerto destino, String fechaSalida) {
 		
 		ArrayList<Vuelo> vuelos = new ArrayList<Vuelo>();
-		
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        String fecha = formatter.format(fechaSalida);
-        String result = fecha.substring(0, fecha.length() - 3);
-        System.out.println(result);
         
         String url = "https://api.travelpayouts.com/aviasales/v3/prices_for_dates?origin=" + salida.getCodigo() + "&destination="+ 
-        		destino.getCodigo() +"&departure_at="+ result +"&unique=false&sorting=price&direct=false&currency=eur&limit=30&page=1&one_way=true&token=6369d0da04027bf181d1e80a116953c5";
+        		destino.getCodigo() +"&departure_at="+ fechaSalida +"&unique=false&sorting=price&direct=false&currency=eur&limit=30&page=1&one_way=true&token=6369d0da04027bf181d1e80a116953c5";
         		
         		short precio = 0;
         		String horaSalida = "";
@@ -225,13 +207,15 @@ public class Vuelo {
 	}
 	
 	private HashMap<String, Billete> getBilletes(Avion avion, short precio){
+		
 		HashMap<String, Billete> billetes = new HashMap<String, Billete>();
 		TreeMap<String, Asiento> aseintos = avion.getAsientos();
 		Iterator itm = aseintos.entrySet().iterator();
 		short i = 1;
 		while (itm.hasNext()) {
+			int numeroRandom = r.nextInt();
 			Entry actual = (Entry) itm.next();
-			billetes.put(i+"", new Billete((Asiento)actual.getValue(), true, precio));
+			billetes.put(i+"", new Billete((Asiento)actual.getValue(), (numeroRandom % 2 == 0) ? true : false, ((Asiento)actual.getValue()).isPrimeraClase() ? (short)(precio*2) : precio));
 			i++;
 		}
 		return billetes;

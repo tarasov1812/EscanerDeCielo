@@ -46,12 +46,13 @@ import java.time.format.DateTimeFormatter;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import javax.swing.JCheckBox;
 
 public class PantallaBusqueda extends JPanel {
 	private JDateChooser departureDateChooser;
-	private JButton btnNewButton;
 	private Ventana ventana;
 	private JPanel contenedorElementos;
+	private String fecha;
 
 	public PantallaBusqueda(Ventana v) {
 		this.ventana = v;
@@ -62,12 +63,12 @@ public class PantallaBusqueda extends JPanel {
 		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
 
-		JLabel labelAdonde = new JLabel("New label");
-		GridBagConstraints gbc_labelAdonde = new GridBagConstraints();
-		gbc_labelAdonde.insets = new Insets(0, 0, 5, 5);
-		gbc_labelAdonde.gridx = 1;
-		gbc_labelAdonde.gridy = 1;
-		add(labelAdonde, gbc_labelAdonde);
+		JLabel labelBusqueda = new JLabel("Dime a donde quieres ir " + v.clienteLogado.getNombre());
+		GridBagConstraints gbc_labelBusqueda = new GridBagConstraints();
+		gbc_labelBusqueda.insets = new Insets(0, 0, 5, 5);
+		gbc_labelBusqueda.gridx = 1;
+		gbc_labelBusqueda.gridy = 1;
+		add(labelBusqueda, gbc_labelBusqueda);
 
 		JLabel labelDate = new JLabel("Date");
 		GridBagConstraints gbc_labelDate = new GridBagConstraints();
@@ -77,9 +78,11 @@ public class PantallaBusqueda extends JPanel {
 		add(labelDate, gbc_labelDate);
 
 		departureDateChooser = new JDateChooser();
+		departureDateChooser.setDate(new Date());
+
 		departureDateChooser.getCalendarButton().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
+		    public void actionPerformed(ActionEvent e) {
+		    }
 		});
 		departureDateChooser.setDateFormatString("yyyy-MM-dd");
 		GridBagConstraints gbc_departureDateChooser = new GridBagConstraints();
@@ -88,42 +91,39 @@ public class PantallaBusqueda extends JPanel {
 		gbc_departureDateChooser.gridy = 3;
 		add(departureDateChooser, gbc_departureDateChooser);
 
-		JLabel labelPais = new JLabel("Pais");
-		GridBagConstraints gbc_labelPais = new GridBagConstraints();
-		gbc_labelPais.anchor = GridBagConstraints.EAST;
-		gbc_labelPais.insets = new Insets(0, 0, 5, 5);
-		gbc_labelPais.gridx = 3;
-		gbc_labelPais.gridy = 3;
-		add(labelPais, gbc_labelPais);
+		JLabel labelDesde = new JLabel("Desde");
+		GridBagConstraints gbc_labelDesde = new GridBagConstraints();
+		gbc_labelDesde.anchor = GridBagConstraints.EAST;
+		gbc_labelDesde.insets = new Insets(0, 0, 5, 5);
+		gbc_labelDesde.gridx = 3;
+		gbc_labelDesde.gridy = 3;
+		add(labelDesde, gbc_labelDesde);
 
-		JComboBox comboBoxCiudad = new JComboBox();
-		GridBagConstraints gbc_comboBoxCiudad = new GridBagConstraints();
-		gbc_comboBoxCiudad.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBoxCiudad.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBoxCiudad.gridx = 6;
-		gbc_comboBoxCiudad.gridy = 3;
-		add(comboBoxCiudad, gbc_comboBoxCiudad);
+		JComboBox comboBoxCiudadOrigen = new JComboBox();
+		GridBagConstraints gbc_comboBoxCiudadOrigen = new GridBagConstraints();
+		gbc_comboBoxCiudadOrigen.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBoxCiudadOrigen.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBoxCiudadOrigen.gridx = 6;
+		gbc_comboBoxCiudadOrigen.gridy = 3;
+		add(comboBoxCiudadOrigen, gbc_comboBoxCiudadOrigen);
 
-		JComboBox comboBoxPais = new JComboBox();
+		JComboBox comboBoxPaisOrigen = new JComboBox();
 		String[] paises = Aeropuerto.listaDePaises();
-		comboBoxPais.setModel(new DefaultComboBoxModel(paises));
-
-		String selectedValue = "Spain";
-		comboBoxPais.addActionListener(new ActionListener() {
+		comboBoxPaisOrigen.setModel(new DefaultComboBoxModel(paises));
+		comboBoxPaisOrigen.setSelectedItem("South Korea");
+		comboBoxPaisOrigen.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Получаем текущее выбранное значение из JComboBox
-				String selectedValue = comboBoxPais.getSelectedItem().toString();
-				System.out.println("Выбранное значение: " + selectedValue);
-				comboBoxCiudad.setModel(new DefaultComboBoxModel(Aeropuerto.listaDeCiudades(selectedValue)));
+				String selectedValue = comboBoxPaisOrigen.getSelectedItem().toString();
+				comboBoxCiudadOrigen.setModel(new DefaultComboBoxModel(Aeropuerto.listaDeCiudades(selectedValue)));
 			}
 		});
-		GridBagConstraints gbc_comboBoxPais = new GridBagConstraints();
-		gbc_comboBoxPais.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBoxPais.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBoxPais.gridx = 4;
-		gbc_comboBoxPais.gridy = 3;
-		add(comboBoxPais, gbc_comboBoxPais);
+		GridBagConstraints gbc_comboBoxPaisOrigen = new GridBagConstraints();
+		gbc_comboBoxPaisOrigen.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBoxPaisOrigen.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBoxPaisOrigen.gridx = 4;
+		gbc_comboBoxPaisOrigen.gridy = 3;
+		add(comboBoxPaisOrigen, gbc_comboBoxPaisOrigen);
 
 		JLabel labelCiudad = new JLabel("Ciudad");
 		GridBagConstraints gbc_labelCiudad = new GridBagConstraints();
@@ -132,6 +132,56 @@ public class PantallaBusqueda extends JPanel {
 		gbc_labelCiudad.gridx = 5;
 		gbc_labelCiudad.gridy = 3;
 		add(labelCiudad, gbc_labelCiudad);
+		
+		JCheckBox checkMes = new JCheckBox("Ver mes completo");
+		GridBagConstraints gbc_checkMes = new GridBagConstraints();
+		gbc_checkMes.insets = new Insets(0, 0, 5, 5);
+		gbc_checkMes.gridx = 2;
+		gbc_checkMes.gridy = 4;
+		add(checkMes, gbc_checkMes);
+		
+		JLabel labelA = new JLabel("A");
+		GridBagConstraints gbc_labelA = new GridBagConstraints();
+		gbc_labelA.anchor = GridBagConstraints.EAST;
+		gbc_labelA.insets = new Insets(0, 0, 5, 5);
+		gbc_labelA.gridx = 3;
+		gbc_labelA.gridy = 4;
+		add(labelA, gbc_labelA);
+		
+		JComboBox comboBoxPaisDestion = new JComboBox();
+		GridBagConstraints gbc_comboBoxPaisDestion = new GridBagConstraints();
+		gbc_comboBoxPaisDestion.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBoxPaisDestion.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBoxPaisDestion.gridx = 4;
+		gbc_comboBoxPaisDestion.gridy = 4;
+		add(comboBoxPaisDestion, gbc_comboBoxPaisDestion);
+		comboBoxPaisDestion.setModel(new DefaultComboBoxModel(paises));	
+		comboBoxPaisDestion.setSelectedItem("South Korea");
+		
+		JLabel labelCiudad_1 = new JLabel("Ciudad");
+		GridBagConstraints gbc_labelCiudad_1 = new GridBagConstraints();
+		gbc_labelCiudad_1.anchor = GridBagConstraints.EAST;
+		gbc_labelCiudad_1.insets = new Insets(0, 0, 5, 5);
+		gbc_labelCiudad_1.gridx = 5;
+		gbc_labelCiudad_1.gridy = 4;
+		add(labelCiudad_1, gbc_labelCiudad_1);
+		
+		JComboBox comboBoxCiudadDestino = new JComboBox();
+		GridBagConstraints gbc_comboBoxCiudadDestino = new GridBagConstraints();
+		gbc_comboBoxCiudadDestino.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBoxCiudadDestino.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBoxCiudadDestino.gridx = 6;
+		gbc_comboBoxCiudadDestino.gridy = 4;
+		add(comboBoxCiudadDestino, gbc_comboBoxCiudadDestino);
+		
+		comboBoxPaisDestion.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String selectedValue = comboBoxPaisDestion.getSelectedItem().toString();
+				comboBoxCiudadDestino.setModel(new DefaultComboBoxModel(Aeropuerto.listaDeCiudades(selectedValue)));
+			}
+		});
 
 		JScrollPane lista = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
@@ -145,20 +195,37 @@ public class PantallaBusqueda extends JPanel {
 		contenedorElementos = new JPanel();
 		lista.setViewportView(contenedorElementos);
 		contenedorElementos.setLayout(new BoxLayout(contenedorElementos, BoxLayout.Y_AXIS));
+		
+		//Resibimos la fecha
+		
 
 		JButton botonBuscar = new JButton("Buscar");
 		botonBuscar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Aeropuerto salida = new Aeropuerto("Malaga", "AGP", "Malaga");
-				Aeropuerto destino = new Aeropuerto(comboBoxCiudad.getSelectedItem().toString(),
-						Aeropuerto.codigoDeAeropuerto(comboBoxCiudad.getSelectedItem().toString()),
-						comboBoxCiudad.getSelectedItem().toString());
+				contenedorElementos.removeAll();
+				contenedorElementos.revalidate();
+				contenedorElementos.repaint();
+				Aeropuerto salida = new Aeropuerto(comboBoxCiudadOrigen.getSelectedItem().toString(),
+						Aeropuerto.codigoDeAeropuerto(comboBoxCiudadOrigen.getSelectedItem().toString()),
+						comboBoxCiudadOrigen.getSelectedItem().toString());
+				Aeropuerto destino = new Aeropuerto(comboBoxCiudadDestino.getSelectedItem().toString(),
+						Aeropuerto.codigoDeAeropuerto(comboBoxCiudadDestino.getSelectedItem().toString()),
+						comboBoxCiudadDestino.getSelectedItem().toString());
+				
+				Date departureDate = departureDateChooser.getDate();		
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		        String fechaDia = formatter.format(departureDate);
+		        String fechaMes = fechaDia.substring(0, fechaDia.length() - 3);
+		        
+		        if(checkMes.isSelected()) {
+		        	fecha = fechaMes;
+		        } else {
+		        	fecha = fechaDia;
+		        }
 
-				Date departureDate = departureDateChooser.getDate();
 
-				// создаем новую модель данных для таблицы с полученными данными о рейсах
-				ArrayList<Vuelo> vuelos = Vuelo.buscarVuelo(salida, destino, departureDate);
+				ArrayList<Vuelo> vuelos = Vuelo.buscarVuelo(salida, destino, fecha);
 				for (int i = 0; i < vuelos.size(); i++) {
 					contenedorElementos.add(new ElementoResultadoBusqueda(ventana, vuelos.get(i)));
 				}
@@ -173,61 +240,6 @@ public class PantallaBusqueda extends JPanel {
 		gbc_botonBuscar.gridx = 7;
 		gbc_botonBuscar.gridy = 3;
 		add(botonBuscar, gbc_botonBuscar);
-
-//		String[] columnNames = {"Hora de Salida", "Precio", "Duracion", "Transbordos", "Aerolinea"};
-//	    Object[][] data = {{"10:00", "100$", "2 horas", "sin tranbordo", "Turkish Airline"}
-//	                       };
-
-//	    final JTable table = new JTable(data, columnNames);
-
-//        comboBoxPais = new JComboBox();
-//        String[] paises = Aeropuerto.listaDePaises();
-//        comboBoxPais.setModel(new DefaultComboBoxModel(paises));
-//        add(comboBoxPais);
-//        
-//        String selectedValue = "Spain";
-//        comboBoxPais.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                // Получаем текущее выбранное значение из JComboBox
-//                String selectedValue = comboBoxPais.getSelectedItem().toString();
-//                System.out.println("Выбранное значение: " + selectedValue);
-//                comboBoxCuidad.setModel(new DefaultComboBoxModel(Aeropuerto.listaDeCiudades(selectedValue)));
-//            }
-//        });
-
-//        btnNewButton = new JButton("Buscar");
-//        btnNewButton.addMouseListener(new MouseAdapter() {
-//        	@Override
-//        	public void mouseClicked(MouseEvent e) {
-//        		Aeropuerto salida = new Aeropuerto("Malaga", "AGP", "Malaga");
-//        		Aeropuerto destino = new Aeropuerto(comboBoxCuidad.getSelectedItem().toString(), Aeropuerto.codigoDeAeropuerto(comboBoxCuidad.getSelectedItem().toString()), comboBoxCuidad.getSelectedItem().toString());
-//        		
-//        		Date departureDate = departureDateChooser.getDate();
-//        		
-//                // создаем новую модель данных для таблицы с полученными данными о рейсах
-//        		ArrayList<Vuelo> vuelos = Vuelo.buscarVuelo(salida, destino, departureDate);
-//				for(int i = 0, i< vuelos.size(); i++) {
-//        			new ElementoResulta (vuelos.get(i));
-//				}
-////        		
-//        		
-//                DefaultTableModel model = new DefaultTableModel(data, columnNames);
-//                
-////                 обновляем модель данных таблицы
-//                table.setModel(model);
-//                JButton botonComparar = new JButton("Comprar");
-//                botonComparar.addMouseListener(new MouseAdapter() {
-//                	@Override
-//                	public void mouseClicked(MouseEvent e) {
-//                		new SeatSelectionGUI(vuelo);
-//                	}
-//                });
-//                add(botonComparar);
-//        	}
-//        });
-//        add(btnNewButton);
-
 	}
 
 }

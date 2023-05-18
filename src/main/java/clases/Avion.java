@@ -43,7 +43,7 @@ public class Avion extends CosaConNombre {
 		int numRows = 26;
 		for (int i = 1; i <= numRows; i++) {
 			for (int y = 0; y < letters.length; y++) {
-				if (i == 1) {
+				if (i > 0 && i < 4) {
 					asientos.put(i + letters[y], new Asiento(i + letters[y], false, true));
 				} else if (i == 14 && y == 0 || i == 14 && y == 5) {
 					asientos.put(i + letters[y], new Asiento(i + letters[y], true, false));

@@ -48,8 +48,9 @@ public class ElementoResultadoBusqueda extends JPanel{
 		gridBagLayout.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		JLabel labelHora = new JLabel(vuelo.getFechaDeSalida().toLocalTime().toString());
+		JLabel labelHora = new JLabel(vuelo.getFechaDeSalida().toLocalDate().toString() + " " + vuelo.getFechaDeSalida().toLocalTime().toString());
 		GridBagConstraints gbc_labelHora = new GridBagConstraints();
+		gbc_labelHora.anchor = GridBagConstraints.WEST;
 		gbc_labelHora.insets = new Insets(0, 0, 0, 5);
 		gbc_labelHora.gridx = 0;
 		gbc_labelHora.gridy = 0;
@@ -57,6 +58,7 @@ public class ElementoResultadoBusqueda extends JPanel{
 		
 		JLabel labelPrecio = new JLabel(masBarato + " €");
 		GridBagConstraints gbc_labelPrecio = new GridBagConstraints();
+		gbc_labelPrecio.anchor = GridBagConstraints.WEST;
 		gbc_labelPrecio.insets = new Insets(0, 0, 0, 5);
 		gbc_labelPrecio.gridx = 1;
 		gbc_labelPrecio.gridy = 0;
@@ -64,6 +66,7 @@ public class ElementoResultadoBusqueda extends JPanel{
 		
 		JLabel labelDuracion = new JLabel(durationString);
 		GridBagConstraints gbc_labelDuracion = new GridBagConstraints();
+		gbc_labelDuracion.anchor = GridBagConstraints.WEST;
 		gbc_labelDuracion.insets = new Insets(0, 0, 0, 5);
 		gbc_labelDuracion.gridx = 2;
 		gbc_labelDuracion.gridy = 0;
@@ -71,6 +74,7 @@ public class ElementoResultadoBusqueda extends JPanel{
 		
 		JLabel labelTransbordos = new JLabel("" + vuelo.getNumeroDeTransbordos());
 		GridBagConstraints gbc_labelTransbordos = new GridBagConstraints();
+		gbc_labelTransbordos.anchor = GridBagConstraints.WEST;
 		gbc_labelTransbordos.insets = new Insets(0, 0, 0, 5);
 		gbc_labelTransbordos.gridx = 3;
 		gbc_labelTransbordos.gridy = 0;
@@ -78,6 +82,7 @@ public class ElementoResultadoBusqueda extends JPanel{
 		
 		JLabel labelAerolinea = new JLabel(vuelo.getAerolinea().getNombre());
 		GridBagConstraints gbc_labelAerolinea = new GridBagConstraints();
+		gbc_labelAerolinea.anchor = GridBagConstraints.WEST;
 		gbc_labelAerolinea.insets = new Insets(0, 0, 0, 5);
 		gbc_labelAerolinea.gridx = 4;
 		gbc_labelAerolinea.gridy = 0;
@@ -87,10 +92,12 @@ public class ElementoResultadoBusqueda extends JPanel{
 		botonVerAsientos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new SeatSelectionGUI(vuelo);
+//				new VentanaElijirAsiento(vuelo, ventana);
+				new VentanaElijirAsiento2(ventana.clienteLogado, vuelo);
 			}
 		});
 		GridBagConstraints gbc_botonVerAsientos = new GridBagConstraints();
+		gbc_botonVerAsientos.anchor = GridBagConstraints.WEST;
 		gbc_botonVerAsientos.gridx = 5;
 		gbc_botonVerAsientos.gridy = 0;
 		add(botonVerAsientos, gbc_botonVerAsientos);

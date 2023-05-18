@@ -6,16 +6,9 @@ import java.util.List;
 public class Reserva {
 	private long codigoReserva;
 	private Cliente cliente;
-	private List<Vuelo> vuelos;
+	private Vuelo vuelo;
 	private List<Persona> pasajeros;
-	
-	
-	public List<Vuelo> getVuelos() {
-		return vuelos;
-	}
-	public void setVuelos(List<Vuelo> vuelos) {
-		this.vuelos = vuelos;
-	}
+
 	public List<Persona> getPasajeros() {
 		return pasajeros;
 	}
@@ -35,8 +28,8 @@ public class Reserva {
 		this.cliente = cliente;
 	}
 	
-	public Reserva(List<Vuelo> vuelos, Cliente clitente, List<Persona> pasajeros) {
-        this.vuelos = vuelos;
+	public Reserva(Vuelo vuelo, Cliente clitente, List<Persona> pasajeros) {
+        this.vuelo = vuelo;
         this.setCliente(clitente);
         this.setPasajeros(pasajeros);
     }

@@ -39,9 +39,4 @@ public class Billete {
 	public String toString() {
 		return "asiento: " + asiento + "\nisDisponible: " + isDisponible + "\nprice: " + price + "\n";
 	}
-	
-	
-
-	
-	
 }
