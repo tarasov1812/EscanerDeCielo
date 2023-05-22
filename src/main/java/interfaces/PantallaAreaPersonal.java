@@ -45,6 +45,12 @@ public class PantallaAreaPersonal extends JPanel{
 		add(botonBuscar, gbc_botonBuscar);
 		
 		JButton botonMisBilletes = new JButton("Ver mis Billetes");
+		botonMisBilletes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarAPantalla(PantallaVerBilletes.class);
+			}
+		});
 		GridBagConstraints gbc_botonMisBilletes = new GridBagConstraints();
 		gbc_botonMisBilletes.insets = new Insets(0, 0, 5, 5);
 		gbc_botonMisBilletes.gridx = 2;

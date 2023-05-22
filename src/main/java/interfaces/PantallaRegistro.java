@@ -177,20 +177,16 @@ public class PantallaRegistro extends JPanel{
 		add(botonRegistro, gbc_botonRegistro);
 		
 		JButton botonCancelar = new JButton("Cancelar");
+		botonCancelar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarAPantalla(PantallaLogin.class);
+			}
+		});
 		GridBagConstraints gbc_botonCancelar = new GridBagConstraints();
 		gbc_botonCancelar.insets = new Insets(0, 0, 5, 5);
 		gbc_botonCancelar.gridx = 1;
 		gbc_botonCancelar.gridy = 7;
-		add(botonCancelar, gbc_botonCancelar);
-		
-		
-//		JButton bottonLogin = new JButton("Login");
-//		bottonLogin.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				ventana.cambiarAPantalla(PantallaLogin.class);
-//			}
-//		});
-		
+		add(botonCancelar, gbc_botonCancelar);		
 	}
 }

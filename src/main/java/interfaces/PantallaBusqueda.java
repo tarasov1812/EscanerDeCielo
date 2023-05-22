@@ -65,6 +65,7 @@ public class PantallaBusqueda extends JPanel {
 
 		JLabel labelBusqueda = new JLabel("Dime a donde quieres ir " + v.clienteLogado.getNombre());
 		GridBagConstraints gbc_labelBusqueda = new GridBagConstraints();
+		gbc_labelBusqueda.gridwidth = 7;
 		gbc_labelBusqueda.insets = new Insets(0, 0, 5, 5);
 		gbc_labelBusqueda.gridx = 1;
 		gbc_labelBusqueda.gridy = 1;
@@ -110,7 +111,7 @@ public class PantallaBusqueda extends JPanel {
 		JComboBox comboBoxPaisOrigen = new JComboBox();
 		String[] paises = Aeropuerto.listaDePaises();
 		comboBoxPaisOrigen.setModel(new DefaultComboBoxModel(paises));
-		comboBoxPaisOrigen.setSelectedItem("South Korea");
+		comboBoxPaisOrigen.setSelectedItem("Spain");
 		comboBoxPaisOrigen.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -118,6 +119,9 @@ public class PantallaBusqueda extends JPanel {
 				comboBoxCiudadOrigen.setModel(new DefaultComboBoxModel(Aeropuerto.listaDeCiudades(selectedValue)));
 			}
 		});
+		comboBoxCiudadOrigen.setModel(new DefaultComboBoxModel(Aeropuerto.listaDeCiudades("Spain")));
+		comboBoxCiudadOrigen.setSelectedItem("Malaga");
+		
 		GridBagConstraints gbc_comboBoxPaisOrigen = new GridBagConstraints();
 		gbc_comboBoxPaisOrigen.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBoxPaisOrigen.fill = GridBagConstraints.HORIZONTAL;
@@ -156,7 +160,7 @@ public class PantallaBusqueda extends JPanel {
 		gbc_comboBoxPaisDestion.gridy = 4;
 		add(comboBoxPaisDestion, gbc_comboBoxPaisDestion);
 		comboBoxPaisDestion.setModel(new DefaultComboBoxModel(paises));	
-		comboBoxPaisDestion.setSelectedItem("South Korea");
+		comboBoxPaisDestion.setSelectedItem("Spain");
 		
 		JLabel labelCiudad_1 = new JLabel("Ciudad");
 		GridBagConstraints gbc_labelCiudad_1 = new GridBagConstraints();
@@ -179,9 +183,13 @@ public class PantallaBusqueda extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String selectedValue = comboBoxPaisDestion.getSelectedItem().toString();
+				System.out.println("Selected Value es" + selectedValue);
 				comboBoxCiudadDestino.setModel(new DefaultComboBoxModel(Aeropuerto.listaDeCiudades(selectedValue)));
+				
 			}
 		});
+		comboBoxCiudadDestino.setModel(new DefaultComboBoxModel(Aeropuerto.listaDeCiudades("Spain")));
+		comboBoxCiudadDestino.setSelectedItem("Barcelona");
 
 		JScrollPane lista = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
@@ -240,6 +248,19 @@ public class PantallaBusqueda extends JPanel {
 		gbc_botonBuscar.gridx = 7;
 		gbc_botonBuscar.gridy = 3;
 		add(botonBuscar, gbc_botonBuscar);
+		
+		JButton botonAtras = new JButton("Atras");
+		botonAtras.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana.cambiarAPantalla(PantallaAreaPersonal.class);
+			}
+		});
+		GridBagConstraints gbc_botonAtras = new GridBagConstraints();
+		gbc_botonAtras.insets = new Insets(0, 0, 5, 5);
+		gbc_botonAtras.gridx = 1;
+		gbc_botonAtras.gridy = 6;
+		add(botonAtras, gbc_botonAtras);
 	}
 
 }

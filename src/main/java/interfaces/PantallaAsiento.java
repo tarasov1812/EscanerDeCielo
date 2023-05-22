@@ -1,5 +1,6 @@
 package interfaces;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -20,19 +21,18 @@ import clases.Billete;
 public class PantallaAsiento extends JPanel{	
 	private VentanaElijirAsiento2 ventanaElijir;
 	private JButton[][] asientosParaMostar;
-	private short cantidadAsientoElijidos;
 	ArrayList<JButton> asientosElijidos = new ArrayList<JButton>();
-	ArrayList<String> asientosEl = new ArrayList<String>();
 
 	public PantallaAsiento(VentanaElijirAsiento2 v) {
 		this.ventanaElijir = v;
+		ventanaElijir.listaAsientos = new ArrayList<String>();
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		gridBagLayout.columnWeights = new double[] { 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE };
 		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
-		HashMap<String, Billete> billetes = v.vuelo.getBilletes();
+		HashMap<String, Billete> billetes = ventanaElijir.vuelo.getBilletes();
 		
 
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -51,6 +51,8 @@ public class PantallaAsiento extends JPanel{
 				String precio = "1";
 				String numero = "2";
 				boolean isDisponible = true;
+				boolean isPrimeraClase = false;
+				boolean isEmergencia = false;
         		Iterator itm = billetes.entrySet().iterator();
         		while (itm.hasNext()) {
         			Entry actual = (Entry) itm.next();
@@ -60,6 +62,8 @@ public class PantallaAsiento extends JPanel{
         				numero = billete.getAsiento().getCodigo();
         				precio = "" + billete.getPrice() + " €";
         				isDisponible = billete.isDisponible();
+        				isPrimeraClase = billete.getAsiento().isPrimeraClase();
+        				isEmergencia = billete.getAsiento().isSalidaDeEmergencia();
         			}     			
         		}
         		
@@ -68,6 +72,13 @@ public class PantallaAsiento extends JPanel{
 				button.setEnabled(isDisponible);
 				if (isDisponible) {
 				    button.setToolTipText(precio);
+				}
+				if (isPrimeraClase) {
+				    button.setForeground(Color.BLUE);
+				} else if(isEmergencia){
+					button.setForeground(Color.ORANGE);
+				} else {
+					button.setForeground(Color.GREEN);
 				}
 				
 				button.setPreferredSize(new Dimension(20, 100));
@@ -81,16 +92,16 @@ public class PantallaAsiento extends JPanel{
 				}
 				
 				button.addActionListener(e -> {
-					if (cantidadAsientoElijidos < 4) {
+					if (ventanaElijir.cantidadAsientoElijidos < 4) {
 						button.setSelected(!button.isSelected());
 						if (button.isSelected()) {
-							cantidadAsientoElijidos++;
+							ventanaElijir.cantidadAsientoElijidos++;
 						} else {
-							cantidadAsientoElijidos--;
+							ventanaElijir.cantidadAsientoElijidos--;
 						}
 					} else if (button.isSelected()) {
 						button.setSelected(false);
-						cantidadAsientoElijidos--;
+						ventanaElijir.cantidadAsientoElijidos--;
 					}
 				});
 			}
@@ -109,19 +120,22 @@ public class PantallaAsiento extends JPanel{
 				}
 			}
 			for (JButton asiento : asientosElijidos) {
-				asientosEl.add(asiento.getText());
+				ventanaElijir.listaAsientos.add(asiento.getText());
 			}
-			System.out.println(cantidadAsientoElijidos);
+			System.out.println(ventanaElijir.cantidadAsientoElijidos);
 		});
 		botonReservar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-//				if(cantidadAsientoElijidos>0) {
-//					new VentanaReserva(ventana, vuelo, cantidadAsientoElijidos, asientosEl);
-//				}
+				if(ventanaElijir.cantidadAsientoElijidos>0) {
+					asientosElijidos = null;
+					v.cambiarAPantalla(PantallaReserva.class);
+				}
 			}
 		});
 		buttonPanel.add(botonReservar);
+		
+		
 
 		gbc.gridx = 0;
 		gbc.gridy = numRows + 1;

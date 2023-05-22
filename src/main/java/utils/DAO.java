@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -68,12 +69,14 @@ public abstract class DAO {
 		it = columnas.values().iterator();
 		while (it.hasNext()) {
 			Object elemento = it.next();
-			if (elemento.getClass() != String.class && elemento.getClass() != Character.class) {
+			if (elemento.getClass() != String.class && elemento.getClass() != Character.class && elemento.getClass() != LocalDateTime.class) {
 				consulta += elemento + ",";
 			} else if (elemento.getClass() == String.class){
 				consulta += "'" + (String) elemento + "',";
 			} else if (elemento.getClass() == Character.class){
 				consulta += "'" + (Character) elemento + "',";
+			} else if (elemento.getClass() == LocalDateTime.class){
+				consulta += "'" + (LocalDateTime) elemento + "',";
 			}
 		}
 		consulta = consulta.substring(0, consulta.length() - 1);

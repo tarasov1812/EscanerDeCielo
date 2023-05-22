@@ -29,8 +29,12 @@ public class Ventana extends JFrame{
 		if(clase.equals(PantallaAreaPersonal.class)) {
 			this.setContentPane(new PantallaAreaPersonal(this));
 		}
+		
 		if(clase.equals(PantallaBusqueda.class)) {
 			this.setContentPane(new PantallaBusqueda(this));
+		}
+		if(clase.equals(PantallaVerBilletes.class)) {
+			this.setContentPane(new PantallaVerBilletes(this));
 		}
 	}
 

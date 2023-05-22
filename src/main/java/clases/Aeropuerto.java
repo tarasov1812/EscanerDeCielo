@@ -12,12 +12,18 @@ import utils.AeropuertoDAO;
 
 public class Aeropuerto extends CosaConNombre{
 	private String codigo;
-	private String ciudad;
+	private String pais;
 	
-	public Aeropuerto(String nombre, String codigo, String ciudad) {
+	public Aeropuerto(String nombre, String codigo, String pais) {
 		super(nombre);
 		this.codigo = codigo;
-		this.ciudad = ciudad;
+		this.pais = pais;
+	}
+	
+	public Aeropuerto(String codigo) {
+		super(Aeropuerto.nombreDeAerupueto(codigo));
+		this.codigo = codigo;
+		this.pais = Aeropuerto.nombreDePais(codigo);
 	}
 
 	public String getCodigo() {
@@ -28,17 +34,17 @@ public class Aeropuerto extends CosaConNombre{
 		this.codigo = codigo;
 	}
 
-	public String getCiudad() {
-		return ciudad;
+	public String getPais() {
+		return pais;
 	}
 
-	public void setCiudad(String ciudad) {
-		this.ciudad = ciudad;
+	public void setPais(String pais) {
+		this.pais = pais;
 	}
 
 	@Override
 	public String toString() {
-		return super.toString() + "codigo: " + codigo + "\nciudad: " + ciudad;
+		return super.toString() + "codigo: " + codigo + "\nciudad: " + pais;
 	}
 	
 	public static String[] listaDePaises() {
@@ -82,19 +88,48 @@ public class Aeropuerto extends CosaConNombre{
 		return ciudades;
 	}
 	
-	public static String codigoDeAeropuerto(String ciudad) {
+	public static String codigoDeAeropuerto(String nombre) {
 		LinkedHashSet<String> columnasSelect = new LinkedHashSet<String>();
 		columnasSelect.add("code");
 		HashMap<String, Object> restricciones = new HashMap<String, Object>();
-		restricciones.put("name", ciudad);
+		restricciones.put("name", nombre);
 		ArrayList<Object> lista = null;
 		try {
 			lista = AeropuertoDAO.consultar("airports", columnasSelect, restricciones);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String codigo = (String)lista.get(0);
 		return codigo;
+	}
+	
+	public static String nombreDePais(String nombre) {
+		LinkedHashSet<String> columnasSelect = new LinkedHashSet<String>();
+		columnasSelect.add("countryName");
+		HashMap<String, Object> restricciones = new HashMap<String, Object>();
+		restricciones.put("code", nombre);
+		ArrayList<Object> lista = null;
+		try {
+			lista = AeropuertoDAO.consultar("airports", columnasSelect, restricciones);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		String pais = (String)lista.get(0);
+		return pais;
+	}
+	
+	public static String nombreDeAerupueto(String codigo) {
+		LinkedHashSet<String> columnasSelect = new LinkedHashSet<String>();
+		columnasSelect.add("name");
+		HashMap<String, Object> restricciones = new HashMap<String, Object>();
+		restricciones.put("code", codigo);
+		ArrayList<Object> lista = null;
+		try {
+			lista = AeropuertoDAO.consultar("airports", columnasSelect, restricciones);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		String nombre = (String)lista.get(0);
+		return nombre;
 	}
 }

@@ -42,7 +42,14 @@ public class Vuelo {
 		this.aerolinea = aerolinea;
 	}
 	
-	
+	public Vuelo(String numeroDeVuelo, String salida, String destino,
+			LocalDateTime fechaDeSalida, LocalDateTime fechaDeLlegada) {
+		this.numeroDeVuelo = numeroDeVuelo;
+		this.salida = new Aeropuerto(salida);
+		this.destino = new Aeropuerto(destino);
+		this.fechaDeSalida = fechaDeSalida;
+		this.fechaDeLlegada = fechaDeLlegada;
+	}
 
 	public String getNumeroDeVuelo() {
 		return numeroDeVuelo;
@@ -87,7 +94,6 @@ public class Vuelo {
 	public void setFechaDeSalida(LocalDateTime fechaDeSalida) {
 		this.fechaDeSalida = fechaDeSalida;
 	}
-
 
 
 	public LocalDateTime getFechaDeLlegada() {
@@ -149,6 +155,7 @@ public class Vuelo {
 		this.aerolinea = aerolinea;
 	}
 
+	
 
 
 	public static ArrayList<Vuelo> buscarVuelo (Aeropuerto salida, Aeropuerto destino, String fechaSalida) {
@@ -211,12 +218,10 @@ public class Vuelo {
 		HashMap<String, Billete> billetes = new HashMap<String, Billete>();
 		TreeMap<String, Asiento> aseintos = avion.getAsientos();
 		Iterator itm = aseintos.entrySet().iterator();
-		short i = 1;
 		while (itm.hasNext()) {
 			int numeroRandom = r.nextInt();
 			Entry actual = (Entry) itm.next();
-			billetes.put(i+"", new Billete((Asiento)actual.getValue(), (numeroRandom % 2 == 0) ? true : false, ((Asiento)actual.getValue()).isPrimeraClase() ? (short)(precio*2) : precio));
-			i++;
+			billetes.put(((Asiento)actual.getValue()).getCodigo(), new Billete((Asiento)actual.getValue(), (numeroRandom % 2 == 0) ? true : false, ((Asiento)actual.getValue()).isPrimeraClase() ? (short)(precio*2) : precio));
 		}
 		return billetes;
 	}

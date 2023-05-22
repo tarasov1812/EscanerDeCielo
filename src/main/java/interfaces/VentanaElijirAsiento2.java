@@ -12,13 +12,15 @@ import clases.Vuelo;
 public class VentanaElijirAsiento2 extends JFrame{
 	protected Cliente clienteLogado;
 	protected Vuelo vuelo;
+	protected short cantidadAsientoElijidos;
+	protected ArrayList<String> listaAsientos;
 	
 	
-	public VentanaElijirAsiento2(Cliente cliente, Vuelo vuelo) {
-		this.clienteLogado = cliente;
+	public VentanaElijirAsiento2(Cliente clienteLogado, Vuelo vuelo) {
+		this.clienteLogado = clienteLogado;
 		this.vuelo = vuelo;
 		this.setMinimumSize(new Dimension(500, getHeight()));
-		this.setTitle("Escaner de Cielo");
+		this.setTitle("Reservar");
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setContentPane(new PantallaAsiento(this));
