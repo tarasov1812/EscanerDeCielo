@@ -12,6 +12,7 @@ import utils.DAO;
 public class Cliente extends Persona{
 	private String email;
 	private String contrasena;
+	private Billete billete;
 	
 	public Cliente(String nombre, String apellido, char genero, String email, String contrasena) throws SQLException {
 		super(nombre, apellido, genero);
@@ -67,6 +68,14 @@ public class Cliente extends Persona{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Billete getBillete() {
+		return billete;
+	}
+
+	public void setBillete(Billete billete) {
+		this.billete = billete;
 	}
 
 	@Override

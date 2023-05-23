@@ -2,11 +2,11 @@ package clases;
 
 public class Pasajero extends Persona{
 	private String pasaporte;
-	private String numeroAsiento;
-	public Pasajero(String nombre, String apellido, char genero, String pasaporte, String numeroAsiento) {
+	private Billete billete;
+	public Pasajero(String nombre, String apellido, char genero, String pasaporte, Billete billete) {
 		super(nombre, apellido, genero);
 		this.pasaporte = pasaporte;
-		this.numeroAsiento = numeroAsiento;
+		this.billete = billete;
 	}
 	public String getPasaporte() {
 		return pasaporte;
@@ -14,10 +14,17 @@ public class Pasajero extends Persona{
 	public void setPasaporte(String pasaporte) {
 		this.pasaporte = pasaporte;
 	}
-	public String getNumeroAsiento() {
-		return numeroAsiento;
+	public Billete getBillete() {
+		return billete;
 	}
-	public void setNumeroAsiento(String numeroAsiento) {
-		this.numeroAsiento = numeroAsiento;
+	public void setBillete(Billete billete) {
+		this.billete = billete;
 	}
+	@Override
+	public String toString() {
+		return super.toString() + "Billete: " + billete + "\n";
+	}
+	
+	
+	
 }

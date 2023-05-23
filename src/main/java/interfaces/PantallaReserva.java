@@ -16,6 +16,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JScrollPane;
@@ -78,16 +79,16 @@ public class PantallaReserva extends JPanel{
 		gbc_labelAsiento.gridy = 1;
 		add(labelAsiento, gbc_labelAsiento);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox comboBoxAsiento = new JComboBox();
 		String[] listaAsientos = ventanaElijir.listaAsientos.toArray(new String[ventanaElijir.listaAsientos.size()]);
-		comboBox.setModel(new DefaultComboBoxModel(listaAsientos));
-		comboBox.setSelectedItem(listaAsientos[0]);
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.gridx = 2;
-		gbc_comboBox.gridy = 1;
-		add(comboBox, gbc_comboBox);
+		comboBoxAsiento.setModel(new DefaultComboBoxModel(listaAsientos));
+		comboBoxAsiento.setSelectedItem(listaAsientos[0]);
+		GridBagConstraints gbc_comboBoxAsiento = new GridBagConstraints();
+		gbc_comboBoxAsiento.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBoxAsiento.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBoxAsiento.gridx = 2;
+		gbc_comboBoxAsiento.gridy = 1;
+		add(comboBoxAsiento, gbc_comboBoxAsiento);
 		
 		JLabel labelNombre_1 = new JLabel("Nombre");
 		GridBagConstraints gbc_labelNombre_1 = new GridBagConstraints();
@@ -207,11 +208,12 @@ public class PantallaReserva extends JPanel{
 				        generos.add(genero);
 				        pasaportes.add(pasaporte);
 				        asientos.add(asiento);
-				        Billete billete = ventanaElijir.vuelo.getBilletes().get(asiento);
+				        Billete billete= ventanaElijir.vuelo.getBilletes().get(asiento.trim());
 				        System.out.println(billete);
-				        pasajeros.add(new Pasajero(nombre, apellido, genero, pasaporte, asiento));
+				        pasajeros.add(new Pasajero(nombre, apellido, genero, pasaporte, billete));
 				    }
 				}
+				ventanaElijir.clienteLogado.setBillete(ventanaElijir.vuelo.getBilletes().get(((String)comboBoxAsiento.getSelectedItem()).trim()));
 				pasajeros.add(ventanaElijir.clienteLogado);				
 				Reserva reserva;
 				try {

@@ -30,7 +30,6 @@ public class Reserva {
 		this.vuelo = vuelo;
 	}
 
-
 	public void setPasajeros(List<Persona> pasajeros) {
 		this.pasajeros = pasajeros;
 	}
@@ -58,6 +57,7 @@ public class Reserva {
 		this.codigoReserva = crearNumeroDeReserva();
 
 		HashMap<String, Object> pasajero = new HashMap<String, Object>();
+		HashMap<String, Object> billete = new HashMap<String, Object>();
 		for (byte i = 0; i < pasajeros.size(); i++) {
 			Persona persona = pasajeros.get(i);
 			if (persona instanceof Pasajero) {
@@ -66,9 +66,33 @@ public class Reserva {
 				pasajero.put("genero", pasajeros.get(i).getGenero());
 				pasajero.put("email", clitente.getEmail());
 				pasajero.put("pasaporte", ((Pasajero) pasajeros.get(i)).getPasaporte());
-				pasajero.put("numeroAsiento", ((Pasajero) pasajeros.get(i)).getNumeroAsiento());
+				pasajero.put("numeroAsiento", ((Pasajero) pasajeros.get(i)).getBillete().getAsiento().getCodigo());
 				pasajero.put("codigoReserva", codigoReserva);
 				DAO.insertar("pasajero", pasajero);
+				billete.put("codigoReserva", codigoReserva);
+				billete.put("codigoAsiento", ((Pasajero) pasajeros.get(i)).getBillete().getAsiento().getCodigo());
+				billete.put("isPrimeraClase", ((Pasajero) pasajeros.get(i)).getBillete().getAsiento().isPrimeraClase());
+				billete.put("isSalidaEmergencia",
+						((Pasajero) pasajeros.get(i)).getBillete().getAsiento().isSalidaDeEmergencia());
+				billete.put("precio", ((Pasajero) pasajeros.get(i)).getBillete().getPrice());
+				DAO.insertar("billete", billete);				
+			}
+			if (persona instanceof Cliente) {
+				pasajero.put("nombre", pasajeros.get(i).getNombre());
+				pasajero.put("apellido", pasajeros.get(i).getApellido());
+				pasajero.put("genero", pasajeros.get(i).getGenero());
+				pasajero.put("email", clitente.getEmail());
+				pasajero.put("pasaporte", "---");
+				pasajero.put("numeroAsiento", ((Cliente) pasajeros.get(i)).getBillete().getAsiento().getCodigo());
+				pasajero.put("codigoReserva", codigoReserva);
+				DAO.insertar("pasajero", pasajero);
+				billete.put("codigoReserva", codigoReserva);
+				billete.put("codigoAsiento", ((Cliente) pasajeros.get(i)).getBillete().getAsiento().getCodigo());
+				billete.put("isPrimeraClase", ((Cliente) pasajeros.get(i)).getBillete().getAsiento().isPrimeraClase());
+				billete.put("isSalidaEmergencia",
+						((Cliente) pasajeros.get(i)).getBillete().getAsiento().isSalidaDeEmergencia());
+				billete.put("precio", ((Cliente) pasajeros.get(i)).getBillete().getPrice());
+				DAO.insertar("billete", billete);				
 			}
 
 		}
@@ -126,10 +150,25 @@ public class Reserva {
 			ArrayList<Object> pasajerosSacados = DAO.consultar("pasajero", columnasSelectPasajeros,
 					resticionesPasjeros);
 			for (int j = 0; j < pasajerosSacados.size(); j = j + 5) {
+				HashMap<String, Object> resticionesBillete = new HashMap<String, Object>();
+				resticionesBillete.put("codigoAsiento", (String) "" + pasajerosSacados.get(j + 4));
+				resticionesBillete.put("codigoReserva", numerosDeReservasString.get(i));
+				LinkedHashSet<String> columnasSelectBillete = new LinkedHashSet<String>();
+				columnasSelectBillete.add("isSalidaEmergencia");
+				columnasSelectBillete.add("isPrimeraClase");
+				columnasSelectBillete.add("precio");
+				ArrayList<Object> billeteSacado = DAO.consultar("billete", columnasSelectBillete, resticionesBillete);
+				Billete billeteParaPasajero = null;
+				for (int k = 0; k < billeteSacado.size(); k = k + 3) {
+					billeteParaPasajero = new Billete(new Asiento((String) "" + pasajerosSacados.get(j + 4),
+							(Integer)billeteSacado.get(k) == 0 ? false : true, (Integer)billeteSacado.get(k+1) == 0 ? false : true), true,
+							((Integer)billeteSacado.get(k + 2)).shortValue());
+				}
+
 				pasajeros.add(
 						new Pasajero((String) "" + pasajerosSacados.get(j), (String) "" + pasajerosSacados.get(j + 1),
 								((String) "" + pasajerosSacados.get(j + 2)).charAt(0),
-								(String) "" + pasajerosSacados.get(j + 3), (String) "" + pasajerosSacados.get(j + 4)));
+								(String) "" + pasajerosSacados.get(j + 3), billeteParaPasajero));
 			}
 
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

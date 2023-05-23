@@ -213,8 +213,7 @@ public class Vuelo {
 		return vuelos;
 	}
 	
-	private HashMap<String, Billete> getBilletes(Avion avion, short precio){
-		
+	private HashMap<String, Billete> getBilletes(Avion avion, short precio){		
 		HashMap<String, Billete> billetes = new HashMap<String, Billete>();
 		TreeMap<String, Asiento> aseintos = avion.getAsientos();
 		Iterator itm = aseintos.entrySet().iterator();
