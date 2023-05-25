@@ -180,4 +180,12 @@ public abstract class DAO {
 
 		return ret;
 	}
+	
+	public static int borrarTodo(String tabla) throws SQLException {
+		Statement smt = conectar();
+		String consulta = "delete from " + tabla;
+		int ret = smt.executeUpdate(consulta);
+		desconectar(smt);
+		return ret;
+	}
 }

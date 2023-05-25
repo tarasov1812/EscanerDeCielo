@@ -118,7 +118,7 @@ public class ElementoBillete extends JPanel {
 			precioTotal += ((Pasajero) pasajeros.get(i)).getBillete().getPrice();
 
 		}
-		campoPrecio = new JTextField("" + precioTotal);
+		campoPrecio = new JTextField("" + precioTotal + " €");
 		campoPrecio.setEditable(false);
 		GridBagConstraints gbc_campoPrecio = new GridBagConstraints();
 		gbc_campoPrecio.insets = new Insets(0, 0, 0, 5);

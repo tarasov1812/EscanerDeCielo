@@ -94,7 +94,7 @@ public class PantallaMasInfo extends JPanel{
 		gbc_labelAsiento1.gridy = 2;
 		add(labelAsiento1, gbc_labelAsiento1);
 		
-		JLabel labelPrecio1 = new JLabel(""+((Pasajero) ventana.reserva.getPasajeros().get(0)).getBillete().getPrice());
+		JLabel labelPrecio1 = new JLabel(""+((Pasajero) ventana.reserva.getPasajeros().get(0)).getBillete().getPrice() + " €");
 		GridBagConstraints gbc_labelPrecio1 = new GridBagConstraints();
 		gbc_labelPrecio1.anchor = GridBagConstraints.WEST;
 		gbc_labelPrecio1.insets = new Insets(0, 0, 5, 5);
@@ -134,7 +134,7 @@ public class PantallaMasInfo extends JPanel{
 		gbc_labelAsiento2.gridy = 3;
 		add(labelAsiento2, gbc_labelAsiento2);
 		
-		JLabel labelPrecio2 = new JLabel(ventana.reserva.getPasajeros().size()<2 ? "" : ""+((Pasajero) ventana.reserva.getPasajeros().get(1)).getBillete().getPrice());
+		JLabel labelPrecio2 = new JLabel(ventana.reserva.getPasajeros().size()<2 ? "" : ""+((Pasajero) ventana.reserva.getPasajeros().get(1)).getBillete().getPrice() + " €");
 		GridBagConstraints gbc_labelPrecio2 = new GridBagConstraints();
 		gbc_labelPrecio2.anchor = GridBagConstraints.WEST;
 		gbc_labelPrecio2.insets = new Insets(0, 0, 5, 5);
@@ -174,7 +174,7 @@ public class PantallaMasInfo extends JPanel{
 		gbc_labelAsiento3.gridy = 4;
 		add(labelAsiento3, gbc_labelAsiento3);
 		
-		JLabel labelPrecio3 = new JLabel(ventana.reserva.getPasajeros().size()<3 ? "" : ""+((Pasajero) ventana.reserva.getPasajeros().get(2)).getBillete().getPrice());
+		JLabel labelPrecio3 = new JLabel(ventana.reserva.getPasajeros().size()<3 ? "" : ""+((Pasajero) ventana.reserva.getPasajeros().get(2)).getBillete().getPrice() + " €");
 		GridBagConstraints gbc_labelPrecio3 = new GridBagConstraints();
 		gbc_labelPrecio3.anchor = GridBagConstraints.WEST;
 		gbc_labelPrecio3.insets = new Insets(0, 0, 5, 5);
@@ -214,7 +214,7 @@ public class PantallaMasInfo extends JPanel{
 		gbc_labelAsiento4.gridy = 5;
 		add(labelAsiento4, gbc_labelAsiento4);
 		
-		JLabel labelPrecio4 = new JLabel(ventana.reserva.getPasajeros().size()<4 ? "" : ""+((Pasajero) ventana.reserva.getPasajeros().get(3)).getBillete().getPrice());
+		JLabel labelPrecio4 = new JLabel(ventana.reserva.getPasajeros().size()<4 ? "" : ""+((Pasajero) ventana.reserva.getPasajeros().get(3)).getBillete().getPrice() + " €");
 		GridBagConstraints gbc_labelPrecio4 = new GridBagConstraints();
 		gbc_labelPrecio4.anchor = GridBagConstraints.WEST;
 		gbc_labelPrecio4.insets = new Insets(0, 0, 5, 5);
