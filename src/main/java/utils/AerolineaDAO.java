@@ -1,5 +1,9 @@
 package utils;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -16,13 +20,27 @@ public class AerolineaDAO {
 
 	private static Statement conectar() {
 		try {
-			conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/EscanerDeCielo", "root", "");
+			BufferedReader lector = new BufferedReader(new FileReader("bdconfig.ini"));
+			String ip = lector.readLine();
+			int puerto = Integer.parseInt(lector.readLine());
+			String nombreBD = lector.readLine();
+			String user = lector.readLine();
+			String password = lector.readLine();
+			lector.close();
+			conexion = DriverManager.getConnection("jdbc:mysql://" + ip + ":" + puerto + "/" + nombreBD, user,
+					password);
 			return conexion.createStatement();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		return null;
 	}
 	
 	private static void desconectar(Statement s) {

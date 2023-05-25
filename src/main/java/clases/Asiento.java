@@ -32,7 +32,7 @@ public class Asiento {
 	
 	@Override
 	public String toString() {
-		return "Numero asiento: " + codigo + "\nSalidaDeEmergencia: " + salidaDeEmergencia + "\nPrimeraClase="
+		return "Numero asiento: " + codigo + "\nSalidaDeEmergencia: " + salidaDeEmergencia + "\nPrimeraClase: "
 				+ primeraClase + "\n";
 	}
 	
