@@ -35,6 +35,7 @@ import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JSeparator;
+import javax.swing.border.TitledBorder;
 
 public class PantallaReserva extends JPanel {
 	private JPanel contenedorElementos;
@@ -47,114 +48,113 @@ public class PantallaReserva extends JPanel {
 		ArrayList<Persona> pasajeros = new ArrayList();
 		this.ventanaElijir = ventanaElijir;
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 0, 0, 0, 0, 0, 0 };
-		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-		gridBagLayout.columnWeights = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 0.0, 0.0,
+		gridBagLayout.columnWidths = new int[] { 0, 0, 0 };
+		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 0 };
+		gridBagLayout.columnWeights = new double[] { 1.0, 1.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 0.0, 1.0, 0.0,
 				Double.MIN_VALUE };
 		setLayout(gridBagLayout);
-
-		JLabel labelPasajero_1 = new JLabel("Pasajero №1");
-		GridBagConstraints gbc_labelPasajero_1 = new GridBagConstraints();
-		gbc_labelPasajero_1.gridwidth = 3;
-		gbc_labelPasajero_1.insets = new Insets(0, 0, 5, 5);
-		gbc_labelPasajero_1.gridx = 1;
-		gbc_labelPasajero_1.gridy = 0;
-		add(labelPasajero_1, gbc_labelPasajero_1);
-
-		JButton botonAtras = new JButton("Atras");
-		botonAtras.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				ventanaElijir.cantidadAsientoElijidos = 0;
-				ventanaElijir.cambiarAPantalla(PantallaAsiento.class);
-			}
-		});
-
-		JLabel labelAsiento = new JLabel("Asiento");
-		GridBagConstraints gbc_labelAsiento = new GridBagConstraints();
-		gbc_labelAsiento.anchor = GridBagConstraints.EAST;
-		gbc_labelAsiento.insets = new Insets(0, 0, 5, 5);
-		gbc_labelAsiento.gridx = 1;
-		gbc_labelAsiento.gridy = 1;
-		add(labelAsiento, gbc_labelAsiento);
-
-		JComboBox comboBoxAsiento = new JComboBox();
-		Vector<String> listaAsientos = new Vector<>(ventanaElijir.listaAsientos);
-		comboBoxAsiento.setModel(new DefaultComboBoxModel(listaAsientos));
-		comboBoxAsiento.setSelectedItem(listaAsientos.get(0));
-		GridBagConstraints gbc_comboBoxAsiento = new GridBagConstraints();
-		gbc_comboBoxAsiento.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBoxAsiento.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBoxAsiento.gridx = 2;
-		gbc_comboBoxAsiento.gridy = 1;
-		add(comboBoxAsiento, gbc_comboBoxAsiento);
-
-		JLabel labelNombre_1 = new JLabel("Nombre");
-		GridBagConstraints gbc_labelNombre_1 = new GridBagConstraints();
-		gbc_labelNombre_1.anchor = GridBagConstraints.EAST;
-		gbc_labelNombre_1.insets = new Insets(0, 0, 5, 5);
-		gbc_labelNombre_1.gridx = 1;
-		gbc_labelNombre_1.gridy = 2;
-		add(labelNombre_1, gbc_labelNombre_1);
-
-		textField = new JTextField(ventanaElijir.clienteLogado.getNombre());
-		textField.setEditable(false);
-		textField.setColumns(10);
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.anchor = GridBagConstraints.WEST;
-		gbc_textField.gridwidth = 2;
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.gridx = 2;
-		gbc_textField.gridy = 2;
-		add(textField, gbc_textField);
-
-		JLabel labelApellido = new JLabel("Apellido");
-		GridBagConstraints gbc_labelApellido = new GridBagConstraints();
-		gbc_labelApellido.anchor = GridBagConstraints.EAST;
-		gbc_labelApellido.insets = new Insets(0, 0, 5, 5);
-		gbc_labelApellido.gridx = 1;
-		gbc_labelApellido.gridy = 3;
-		add(labelApellido, gbc_labelApellido);
-
-		textField_1 = new JTextField(ventanaElijir.clienteLogado.getApellido());
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.anchor = GridBagConstraints.WEST;
-		gbc_textField_1.gridwidth = 2;
-		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_1.gridx = 2;
-		gbc_textField_1.gridy = 3;
-		add(textField_1, gbc_textField_1);
-
-		JLabel labelGenero = new JLabel("Genero");
-		GridBagConstraints gbc_labelGenero = new GridBagConstraints();
-		gbc_labelGenero.anchor = GridBagConstraints.EAST;
-		gbc_labelGenero.insets = new Insets(0, 0, 5, 5);
-		gbc_labelGenero.gridx = 1;
-		gbc_labelGenero.gridy = 4;
-		add(labelGenero, gbc_labelGenero);
-
-		JRadioButton radioHombre = new JRadioButton("Hombre");
-
-		radioHombre.setEnabled(false);
-		buttonGroup.add(radioHombre);
-		GridBagConstraints gbc_radioHombre = new GridBagConstraints();
-		gbc_radioHombre.insets = new Insets(0, 0, 5, 5);
-		gbc_radioHombre.gridx = 2;
-		gbc_radioHombre.gridy = 4;
-		add(radioHombre, gbc_radioHombre);
-
-		JRadioButton radioMujer = new JRadioButton("Mujer");
-		radioMujer.setEnabled(false);
-		buttonGroup.add(radioMujer);
-		GridBagConstraints gbc_radioMujer = new GridBagConstraints();
-		gbc_radioMujer.anchor = GridBagConstraints.WEST;
-		gbc_radioMujer.insets = new Insets(0, 0, 5, 5);
-		gbc_radioMujer.gridx = 3;
-		gbc_radioMujer.gridy = 4;
-		add(radioMujer, gbc_radioMujer);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(null, "Pasajero №1", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.gridwidth = 2;
+		gbc_panel.insets = new Insets(0, 0, 5, 0);
+		gbc_panel.gridx = 0;
+		gbc_panel.gridy = 0;
+		add(panel, gbc_panel);
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[]{0, 0, 0, 0};
+		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0};
+		gbl_panel.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel.setLayout(gbl_panel);
+		
+				JLabel labelAsiento = new JLabel("Asiento");
+				GridBagConstraints gbc_labelAsiento = new GridBagConstraints();
+				gbc_labelAsiento.anchor = GridBagConstraints.EAST;
+				gbc_labelAsiento.insets = new Insets(0, 0, 5, 5);
+				gbc_labelAsiento.gridx = 0;
+				gbc_labelAsiento.gridy = 0;
+				panel.add(labelAsiento, gbc_labelAsiento);
+				
+						JComboBox comboBoxAsiento = new JComboBox();
+						GridBagConstraints gbc_comboBoxAsiento = new GridBagConstraints();
+						gbc_comboBoxAsiento.fill = GridBagConstraints.HORIZONTAL;
+						gbc_comboBoxAsiento.insets = new Insets(0, 0, 5, 5);
+						gbc_comboBoxAsiento.gridx = 1;
+						gbc_comboBoxAsiento.gridy = 0;
+						panel.add(comboBoxAsiento, gbc_comboBoxAsiento);
+						Vector<String> listaAsientos = new Vector<>(ventanaElijir.listaAsientos);
+						comboBoxAsiento.setModel(new DefaultComboBoxModel(listaAsientos));
+						comboBoxAsiento.setSelectedItem(listaAsientos.get(0));
+						
+								JLabel labelNombre_1 = new JLabel("Nombre");
+								GridBagConstraints gbc_labelNombre_1 = new GridBagConstraints();
+								gbc_labelNombre_1.anchor = GridBagConstraints.EAST;
+								gbc_labelNombre_1.insets = new Insets(0, 0, 5, 5);
+								gbc_labelNombre_1.gridx = 0;
+								gbc_labelNombre_1.gridy = 1;
+								panel.add(labelNombre_1, gbc_labelNombre_1);
+								
+										textField = new JTextField(ventanaElijir.clienteLogado.getNombre());
+										GridBagConstraints gbc_textField = new GridBagConstraints();
+										gbc_textField.anchor = GridBagConstraints.WEST;
+										gbc_textField.gridwidth = 2;
+										gbc_textField.insets = new Insets(0, 0, 5, 0);
+										gbc_textField.gridx = 1;
+										gbc_textField.gridy = 1;
+										panel.add(textField, gbc_textField);
+										textField.setEditable(false);
+										textField.setColumns(10);
+										
+												JLabel labelApellido = new JLabel("Apellido");
+												GridBagConstraints gbc_labelApellido = new GridBagConstraints();
+												gbc_labelApellido.anchor = GridBagConstraints.EAST;
+												gbc_labelApellido.insets = new Insets(0, 0, 5, 5);
+												gbc_labelApellido.gridx = 0;
+												gbc_labelApellido.gridy = 2;
+												panel.add(labelApellido, gbc_labelApellido);
+												
+														textField_1 = new JTextField(ventanaElijir.clienteLogado.getApellido());
+														GridBagConstraints gbc_textField_1 = new GridBagConstraints();
+														gbc_textField_1.anchor = GridBagConstraints.WEST;
+														gbc_textField_1.gridwidth = 2;
+														gbc_textField_1.insets = new Insets(0, 0, 5, 0);
+														gbc_textField_1.gridx = 1;
+														gbc_textField_1.gridy = 2;
+														panel.add(textField_1, gbc_textField_1);
+														textField_1.setEditable(false);
+														textField_1.setColumns(10);
+														
+																JLabel labelGenero = new JLabel("Genero");
+																GridBagConstraints gbc_labelGenero = new GridBagConstraints();
+																gbc_labelGenero.anchor = GridBagConstraints.EAST;
+																gbc_labelGenero.insets = new Insets(0, 0, 0, 5);
+																gbc_labelGenero.gridx = 0;
+																gbc_labelGenero.gridy = 3;
+																panel.add(labelGenero, gbc_labelGenero);
+																
+																		JRadioButton radioHombre = new JRadioButton("Hombre");
+																		GridBagConstraints gbc_radioHombre = new GridBagConstraints();
+																		gbc_radioHombre.insets = new Insets(0, 0, 0, 5);
+																		gbc_radioHombre.gridx = 1;
+																		gbc_radioHombre.gridy = 3;
+																		panel.add(radioHombre, gbc_radioHombre);
+																		
+																				radioHombre.setEnabled(false);
+																				buttonGroup.add(radioHombre);
+																				
+																						JRadioButton radioMujer = new JRadioButton("Mujer");
+																						GridBagConstraints gbc_radioMujer = new GridBagConstraints();
+																						gbc_radioMujer.anchor = GridBagConstraints.WEST;
+																						gbc_radioMujer.gridx = 2;
+																						gbc_radioMujer.gridy = 3;
+																						panel.add(radioMujer, gbc_radioMujer);
+																						radioMujer.setEnabled(false);
+																						buttonGroup.add(radioMujer);
+		
 
 		if (ventanaElijir.clienteLogado.getGenero() == 'h') {
 			radioHombre.setSelected(true);
@@ -166,12 +166,11 @@ public class PantallaReserva extends JPanel {
 		lista.setBorder(null);
 		GridBagConstraints gbc_lista = new GridBagConstraints();
 		gbc_lista.anchor = GridBagConstraints.NORTH;
-		gbc_lista.gridheight = 3;
-		gbc_lista.gridwidth = 3;
-		gbc_lista.insets = new Insets(0, 0, 5, 5);
+		gbc_lista.gridwidth = 2;
+		gbc_lista.insets = new Insets(0, 0, 5, 0);
 		gbc_lista.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lista.gridx = 1;
-		gbc_lista.gridy = 6;
+		gbc_lista.gridx = 0;
+		gbc_lista.gridy = 1;
 		add(lista, gbc_lista);
 
 		contenedorElementos = new JPanel();
@@ -248,18 +247,26 @@ public class PantallaReserva extends JPanel {
 			}
 
 		});
+		
+				JButton botonAtras = new JButton("Atras");
+				botonAtras.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						ventanaElijir.cantidadAsientoElijidos = 0;
+						ventanaElijir.cambiarAPantalla(PantallaAsiento.class);
+					}
+				});
+				
+						GridBagConstraints gbc_botonAtras = new GridBagConstraints();
+						gbc_botonAtras.anchor = GridBagConstraints.WEST;
+						gbc_botonAtras.insets = new Insets(0, 0, 0, 5);
+						gbc_botonAtras.gridx = 0;
+						gbc_botonAtras.gridy = 2;
+						add(botonAtras, gbc_botonAtras);
 		GridBagConstraints gbc_botonReservar = new GridBagConstraints();
 		gbc_botonReservar.anchor = GridBagConstraints.EAST;
-		gbc_botonReservar.insets = new Insets(0, 0, 5, 5);
-		gbc_botonReservar.gridx = 3;
-		gbc_botonReservar.gridy = 9;
+		gbc_botonReservar.gridx = 1;
+		gbc_botonReservar.gridy = 2;
 		add(botonReservar, gbc_botonReservar);
-
-		GridBagConstraints gbc_botonAtras = new GridBagConstraints();
-		gbc_botonAtras.anchor = GridBagConstraints.NORTHWEST;
-		gbc_botonAtras.insets = new Insets(0, 0, 0, 5);
-		gbc_botonAtras.gridx = 1;
-		gbc_botonAtras.gridy = 10;
-		add(botonAtras, gbc_botonAtras);
 	}
 }
