@@ -28,7 +28,7 @@ public class Persona extends CosaConNombre{
 
 	@Override
 	public String toString() {
-		return super.toString() + "apellido: " + apellido + "\ngenero: " + genero + "\n";
+		return super.toString() + "Apellido: " + apellido + "\nGenero: " + genero + "\n";
 	}
 	
 }

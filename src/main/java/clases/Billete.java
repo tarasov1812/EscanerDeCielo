@@ -37,6 +37,6 @@ public class Billete {
 
 	@Override
 	public String toString() {
-		return "asiento: " + asiento + "\nisDisponible: " + isDisponible + "\nprice: " + price + "\n";
+		return asiento + "Price: " + price;
 	}
 }

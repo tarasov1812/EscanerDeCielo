@@ -17,6 +17,6 @@ public abstract class CosaConNombre {
 
 	@Override
 	public String toString() {
-		return "nombre: " + nombre + "\n";
+		return "\nnombre: " + nombre + "\n";
 	}
 }

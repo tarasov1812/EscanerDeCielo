@@ -1,0 +1,158 @@
+Pasajeros: 
+[nombre: John
+apellido: Adams
+genero: h
+Billete: asiento: codigo=2A
+salidaDeEmergencia: false
+primeraClase=true
+
+isDisponible: true
+price: 1204
+
+, nombre: Den
+apellido: Green
+genero: h
+Billete: asiento: codigo=4C
+salidaDeEmergencia: false
+primeraClase=false
+
+isDisponible: true
+price: 602
+
+, nombre: Ana
+apellido: Maria
+genero: m
+Billete: asiento: codigo=5C
+salidaDeEmergencia: false
+primeraClase=false
+
+isDisponible: true
+price: 602
+
+, nombre: Aleksandr
+apellido: Tarasov
+genero: h
+Billete: asiento: codigo=1A
+salidaDeEmergencia: false
+primeraClase=true
+
+isDisponible: true
+price: 1204
+
+] van a viajar a Belo HorizontePasajeros: 
+[
+nombre: eee
+Apellido: ttt
+Genero: h
+Numero asiento: 5E
+SalidaDeEmergencia: false
+PrimeraClase=false
+Price: 523
+, 
+nombre: ppp
+Apellido: ddd
+Genero: m
+Numero asiento: 5E
+SalidaDeEmergencia: false
+PrimeraClase=false
+Price: 523
+, 
+nombre: Aleksandr
+Apellido: Tarasov
+Genero: h
+Numero asiento: 3A
+SalidaDeEmergencia: false
+PrimeraClase=true
+Price: 1046
+, 
+nombre: eee
+Apellido: ttt
+Genero: h
+Numero asiento: 3A
+SalidaDeEmergencia: false
+PrimeraClase=true
+Price: 1046
+, 
+nombre: ppp
+Apellido: ddd
+Genero: m
+Numero asiento: 5E
+SalidaDeEmergencia: false
+PrimeraClase=false
+Price: 523
+, 
+nombre: Aleksandr
+Apellido: Tarasov
+Genero: h
+Numero asiento: 3A
+SalidaDeEmergencia: false
+PrimeraClase=true
+Price: 1046
+] van a viajar a BarcelonaPasajeros: 
+[
+nombre: oooo
+Apellido: oooo
+Genero: h
+Numero asiento: 4A
+SalidaDeEmergencia: false
+PrimeraClase=false
+Price: 89
+, 
+nombre: mmmm
+Apellido: mmmm
+Genero: m
+Numero asiento: 3D
+SalidaDeEmergencia: false
+PrimeraClase=true
+Price: 178
+, 
+nombre: Aleksandr
+Apellido: Tarasov
+Genero: h
+Numero asiento: 4B
+SalidaDeEmergencia: false
+PrimeraClase=false
+Price: 89
+] van a viajar a BarcelonaPasajeros: 
+[
+nombre: sdfs
+Apellido: fasdf
+Genero: h
+Numero asiento: 4A
+SalidaDeEmergencia: false
+PrimeraClase=false
+Price: 148
+, 
+nombre: Aleksandr
+Apellido: Tarasov
+Genero: h
+Numero asiento: 4A
+SalidaDeEmergencia: false
+PrimeraClase=false
+Price: 148
+] van a viajar a BarcelonaPasajeros: 
+[
+nombre: oooo
+Apellido: oooo
+Genero: h
+Numero asiento: 4A
+SalidaDeEmergencia: false
+PrimeraClase=false
+Price: 89
+, 
+nombre: mmmm
+Apellido: mmmm
+Genero: m
+Numero asiento: 3D
+SalidaDeEmergencia: false
+PrimeraClase=true
+Price: 178
+, 
+nombre: Aleksandr
+Apellido: Tarasov
+Genero: h
+Numero asiento: 4B
+SalidaDeEmergencia: false
+PrimeraClase=false
+Price: 89
+] van a viajar a Barcelona

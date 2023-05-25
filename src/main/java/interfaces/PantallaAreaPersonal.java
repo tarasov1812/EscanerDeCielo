@@ -23,7 +23,7 @@ public class PantallaAreaPersonal extends JPanel{
 		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		JLabel labelBienvenido = new JLabel("Buenos Dias " + v.clienteLogado.getNombre());
+		JLabel labelBienvenido = new JLabel("Buenos Dias " + v.clienteLogado.getNombre() + "!");
 		GridBagConstraints gbc_labelBienvenido = new GridBagConstraints();
 		gbc_labelBienvenido.gridwidth = 2;
 		gbc_labelBienvenido.insets = new Insets(0, 0, 5, 5);

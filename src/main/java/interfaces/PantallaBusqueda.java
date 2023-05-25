@@ -63,7 +63,7 @@ public class PantallaBusqueda extends JPanel {
 		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
 
-		JLabel labelBusqueda = new JLabel("Dime a donde quieres ir " + v.clienteLogado.getNombre());
+		JLabel labelBusqueda = new JLabel("Dime a donde quieres ir, " + v.clienteLogado.getNombre());
 		GridBagConstraints gbc_labelBusqueda = new GridBagConstraints();
 		gbc_labelBusqueda.gridwidth = 7;
 		gbc_labelBusqueda.insets = new Insets(0, 0, 5, 5);

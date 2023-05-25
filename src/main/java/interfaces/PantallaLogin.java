@@ -94,7 +94,7 @@ public class PantallaLogin extends JPanel{
 				
 				try {
 					ventana.clienteLogado = new Cliente(email, contrasena);
-					JOptionPane.showMessageDialog(ventana, "Bienvenido " +  ventana.clienteLogado.getNombre(), "Incio con exito", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(ventana, "Bienvenido " +  ventana.clienteLogado.getNombre() + "!", "Incio con exito", JOptionPane.INFORMATION_MESSAGE);
 					ventana.cambiarAPantalla(PantallaAreaPersonal.class);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block

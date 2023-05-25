@@ -16,6 +16,8 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ElementoBillete extends JPanel {
 	private Ventana ventana;
@@ -127,6 +129,12 @@ public class ElementoBillete extends JPanel {
 		campoPrecio.setColumns(10);
 
 		JButton botonMasInfo = new JButton("Mas info");
+		botonMasInfo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new VentanaMasInfo(reserva);
+			}
+		});
 		GridBagConstraints gbc_botonMasInfo = new GridBagConstraints();
 		gbc_botonMasInfo.gridx = 5;
 		gbc_botonMasInfo.gridy = 1;
