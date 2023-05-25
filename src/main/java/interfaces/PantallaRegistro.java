@@ -26,7 +26,7 @@ import java.awt.Insets;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 
-public class PantallaRegistro extends JPanel{
+public class PantallaRegistro extends PanelFondo{
 	private Ventana ventana;
 	private JTextField emailFiled;
 	private JTextField nombreField;
@@ -157,10 +157,13 @@ public class PantallaRegistro extends JPanel{
 					}
 					String email = campoEmail.getText();
 					String contrasena = new String(campoContrasena.getPassword());
-					
-					new Cliente(nombre, apellido, genero, email, contrasena);
-					JOptionPane.showMessageDialog(ventana, "Registrado correctamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
-					ventana.cambiarAPantalla(PantallaLogin.class);
+					if(email.isEmpty() || contrasena.isEmpty() || nombre.isEmpty() || apellido.isEmpty()) {
+						JOptionPane.showMessageDialog(ventana, "Rellene todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+					} else {	
+						new Cliente(nombre, apellido, genero, email, contrasena);
+						JOptionPane.showMessageDialog(ventana, "Registrado correctamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
+						ventana.cambiarAPantalla(PantallaLogin.class);
+					}
 				} catch (SQLIntegrityConstraintViolationException e1) {
 					JOptionPane.showMessageDialog(ventana, "No se puede registrar", "Error", JOptionPane.ERROR_MESSAGE);
 				}	catch (SQLException e1) {
@@ -184,8 +187,9 @@ public class PantallaRegistro extends JPanel{
 			}
 		});
 		GridBagConstraints gbc_botonCancelar = new GridBagConstraints();
+		gbc_botonCancelar.gridwidth = 2;
 		gbc_botonCancelar.insets = new Insets(0, 0, 5, 5);
-		gbc_botonCancelar.gridx = 1;
+		gbc_botonCancelar.gridx = 2;
 		gbc_botonCancelar.gridy = 7;
 		add(botonCancelar, gbc_botonCancelar);		
 	}

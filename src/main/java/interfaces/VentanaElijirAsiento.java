@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import clases.Cliente;
 import clases.Vuelo;
 
-public class VentanaElijirAsiento2 extends JFrame{
+public class VentanaElijirAsiento extends JFrame{
 	protected Cliente clienteLogado;
 	protected Vuelo vuelo;
 	protected short cantidadAsientoElijidos;
@@ -19,7 +19,7 @@ public class VentanaElijirAsiento2 extends JFrame{
 	protected Ventana ventana;
 	
 	
-	public VentanaElijirAsiento2(Cliente clienteLogado, Vuelo vuelo, Ventana ventana) {
+	public VentanaElijirAsiento(Cliente clienteLogado, Vuelo vuelo, Ventana ventana) {
 		this.ventana = ventana;
 		this.clienteLogado = clienteLogado;
 		this.vuelo = vuelo;

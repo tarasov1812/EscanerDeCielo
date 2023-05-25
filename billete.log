@@ -1,0 +1,30 @@
+
+Reserva №20230525212520
+Vuelo: Malaga->Barcelona
+Pasajeros: 
+[
+nombre: Osthailyd
+Apellido: Bautista
+Genero: m
+Numero asiento: 7A
+SalidaDeEmergencia: false
+PrimeraClase: false
+Price: 93
+, 
+nombre: Lev
+Apellido: Tarasov
+Genero: h
+Numero asiento: 11D
+SalidaDeEmergencia: false
+PrimeraClase: false
+Price: 93
+, 
+nombre: Aleksandr
+Apellido: Tarasov
+Genero: h
+Numero asiento: 6A
+SalidaDeEmergencia: false
+PrimeraClase: false
+Price: 93
+]
+-------------------------

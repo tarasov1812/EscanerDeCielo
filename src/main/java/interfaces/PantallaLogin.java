@@ -18,7 +18,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-public class PantallaLogin extends JPanel{
+public class PantallaLogin extends PanelFondo{
 	private JTextField campoUsuario;
 	private JPasswordField passwordField;
 	private Ventana ventana;

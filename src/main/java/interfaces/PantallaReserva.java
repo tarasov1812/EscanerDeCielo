@@ -38,12 +38,12 @@ import javax.swing.JSeparator;
 
 public class PantallaReserva extends JPanel {
 	private JPanel contenedorElementos;
-	private VentanaElijirAsiento2 ventanaElijir;
+	private VentanaElijirAsiento ventanaElijir;
 	private JTextField textField;
 	private JTextField textField_1;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 
-	public PantallaReserva(VentanaElijirAsiento2 ventanaElijir) {
+	public PantallaReserva(VentanaElijirAsiento ventanaElijir) {
 		ArrayList<Persona> pasajeros = new ArrayList();
 		this.ventanaElijir = ventanaElijir;
 		GridBagLayout gridBagLayout = new GridBagLayout();

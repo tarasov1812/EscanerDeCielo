@@ -235,8 +235,8 @@ public class PantallaMasInfo extends JPanel{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try (FileWriter fw = new FileWriter("./billete.log", true)) {
-					String mensaje = "\nVuelo: " + ventana.reserva.getVuelo().getSalida().getNombre()+"->" + ventana.reserva.getVuelo().getDestino().getNombre() + "\nPasajeros: \n" 
-							+ ventana.reserva.getPasajeros().toString();
+					String mensaje = "\nBillete №" + ventana.reserva.getCodigoReserva()+ "\nVuelo: " + ventana.reserva.getVuelo().getSalida().getNombre()+"->" + ventana.reserva.getVuelo().getDestino().getNombre() + "\nPasajeros: \n" 
+							+ ventana.reserva.getPasajeros().toString() + "\n-------------------------\n";
 					fw.write(mensaje);
 					fw.flush();
 					fw.close();

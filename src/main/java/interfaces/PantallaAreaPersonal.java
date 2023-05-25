@@ -11,7 +11,7 @@ import java.awt.GridBagConstraints;
 import javax.swing.JButton;
 import java.awt.Insets;
 
-public class PantallaAreaPersonal extends JPanel{
+public class PantallaAreaPersonal extends PanelFondo{
 	private Ventana ventana;
 
 	public PantallaAreaPersonal(Ventana v) {

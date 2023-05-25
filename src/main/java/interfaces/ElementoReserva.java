@@ -29,7 +29,7 @@ public class ElementoReserva extends JPanel{
 	private JTextField campoNombre;
 	private JTextField campoApellido;
 	private JTextField campoPasaporte;
-	private VentanaElijirAsiento2 ventanaElijir;
+	private VentanaElijirAsiento ventanaElijir;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private String nombre;
 	private String apellido;
@@ -38,7 +38,7 @@ public class ElementoReserva extends JPanel{
 	private String asiento;
 	JRadioButton radioHombre;
 	JComboBox aientoEligido;
-	public ElementoReserva(VentanaElijirAsiento2 v, byte i) {		
+	public ElementoReserva(VentanaElijirAsiento v, byte i) {		
 		this.ventanaElijir = v;	
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};

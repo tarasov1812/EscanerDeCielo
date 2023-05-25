@@ -92,7 +92,7 @@ public class ElementoResultadoBusqueda extends JPanel{
 		botonVerAsientos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new VentanaElijirAsiento2(ventana.clienteLogado, vuelo, ventana);
+				new VentanaElijirAsiento(ventana.clienteLogado, vuelo, ventana);
 			}
 		});
 		GridBagConstraints gbc_botonVerAsientos = new GridBagConstraints();

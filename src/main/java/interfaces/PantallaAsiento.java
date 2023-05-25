@@ -19,11 +19,11 @@ import javax.swing.JPanel;
 import clases.Billete;
 
 public class PantallaAsiento extends JPanel{	
-	private VentanaElijirAsiento2 ventanaElijir;
+	private VentanaElijirAsiento ventanaElijir;
 	private JButton[][] asientosParaMostar;
 	ArrayList<JButton> asientosElijidos = new ArrayList<JButton>();
 
-	public PantallaAsiento(VentanaElijirAsiento2 v) {
+	public PantallaAsiento(VentanaElijirAsiento v) {
 		this.ventanaElijir = v;
 		ventanaElijir.listaAsientos = new ArrayList<String>();
 		GridBagLayout gridBagLayout = new GridBagLayout();
