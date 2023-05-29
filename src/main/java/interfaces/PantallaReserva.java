@@ -225,7 +225,31 @@ public class PantallaReserva extends JPanel {
 				    }
 				}
 				
-				if (asientos.size() == uniqueAsientos.size() && noConcide) {
+				boolean nombresConValores = true;
+				for (String value : nombres) {
+				    if (value.isEmpty()) {
+				    	nombresConValores = false;
+				        break;
+				    }
+				}			
+				
+				boolean apellidosConValores = true;
+				for (String value : pasaportes) {
+				    if (value.isEmpty()) {
+				    	apellidosConValores = false;
+				        break;
+				    }
+				}
+				
+				boolean pasaportesConValores = true;
+				for (String value : apellidos) {
+				    if (value.isEmpty()) {
+				    	pasaportesConValores = false;
+				        break;
+				    }
+				}
+				
+				if (asientos.size() == uniqueAsientos.size() && noConcide && nombresConValores && apellidosConValores && pasaportesConValores) {
 					Reserva reserva;
 					try {
 						reserva = new Reserva(ventanaElijir.vuelo, ventanaElijir.clienteLogado, pasajeros);
@@ -237,12 +261,36 @@ public class PantallaReserva extends JPanel {
 					JOptionPane.showMessageDialog(ventanaElijir, "Reservado con exito", "Exito",
 							JOptionPane.INFORMATION_MESSAGE);
 					ventanaElijir.dispose();
-				} else {
+				} else if(asientos.size() != uniqueAsientos.size() || !noConcide){
 					asientos.clear();
 					uniqueAsientos.clear();
 					pasajeros.clear();
+					nombres.clear();
+					apellidos.clear();
+					generos.clear();
+					pasaportes.clear();
 					JOptionPane.showMessageDialog(ventanaElijir, "No puedes elijir asientos iguales", "Error",
 							JOptionPane.ERROR_MESSAGE);
+				} else if(!nombresConValores || !apellidosConValores || !pasaportesConValores) {
+					JOptionPane.showMessageDialog(ventanaElijir, "Pon los datos de todos los pasajeros", "Error",
+							JOptionPane.ERROR_MESSAGE);
+					asientos.clear();
+					uniqueAsientos.clear();
+					pasajeros.clear();
+					nombres.clear();
+					apellidos.clear();
+					generos.clear();
+					pasaportes.clear();
+				} else {
+					JOptionPane.showMessageDialog(ventanaElijir, "Error", "Error",
+							JOptionPane.ERROR_MESSAGE);
+					asientos.clear();
+					uniqueAsientos.clear();
+					pasajeros.clear();
+					nombres.clear();
+					apellidos.clear();
+					generos.clear();
+					pasaportes.clear();
 				}
 			}
 

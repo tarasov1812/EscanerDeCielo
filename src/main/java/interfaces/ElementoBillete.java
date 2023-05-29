@@ -73,6 +73,7 @@ public class ElementoBillete extends JPanel {
 
 		campoVuelo = new JTextField(
 				reserva.getVuelo().getSalida().getPais() + "->" + reserva.getVuelo().getDestino().getPais());
+		labelVuelo.setLabelFor(campoVuelo);
 		campoVuelo.setEditable(false);
 		GridBagConstraints gbc_campoVuelo = new GridBagConstraints();
 		gbc_campoVuelo.insets = new Insets(0, 0, 0, 5);
@@ -83,6 +84,7 @@ public class ElementoBillete extends JPanel {
 		campoVuelo.setColumns(10);
 
 		campoFehca = new JTextField("" + reserva.getVuelo().getFechaDeSalida().toLocalDate());
+		labelFechaSalida.setLabelFor(campoFehca);
 		campoFehca.setEditable(false);
 		GridBagConstraints gbc_campoFehca = new GridBagConstraints();
 		gbc_campoFehca.insets = new Insets(0, 0, 0, 5);
@@ -93,6 +95,7 @@ public class ElementoBillete extends JPanel {
 		campoFehca.setColumns(10);
 		
 		campoHoraSalida = new JTextField("" + reserva.getVuelo().getFechaDeSalida().toLocalTime());
+		labelHoraSalida.setLabelFor(campoHoraSalida);
 		campoHoraSalida.setEditable(false);
 		GridBagConstraints gbc_campoHoraSalida = new GridBagConstraints();
 		gbc_campoHoraSalida.insets = new Insets(0, 0, 0, 5);
@@ -103,6 +106,7 @@ public class ElementoBillete extends JPanel {
 		campoHoraSalida.setColumns(10);
 
 		campoCantidadPasajeros = new JTextField("" + (reserva.getPasajeros().size()));
+		labelPasajeros.setLabelFor(campoCantidadPasajeros);
 		campoCantidadPasajeros.setEditable(false);
 		GridBagConstraints gbc_campoCantidadPasajeros = new GridBagConstraints();
 		gbc_campoCantidadPasajeros.insets = new Insets(0, 0, 0, 5);
@@ -119,6 +123,7 @@ public class ElementoBillete extends JPanel {
 
 		}
 		campoPrecio = new JTextField("" + precioTotal + " €");
+		lavelPrecioTotal.setLabelFor(campoPrecio);
 		campoPrecio.setEditable(false);
 		GridBagConstraints gbc_campoPrecio = new GridBagConstraints();
 		gbc_campoPrecio.insets = new Insets(0, 0, 0, 5);

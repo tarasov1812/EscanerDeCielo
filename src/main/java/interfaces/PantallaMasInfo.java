@@ -24,7 +24,8 @@ import javax.swing.border.TitledBorder;
 
 public class PantallaMasInfo extends JPanel{
 	private VentanaMasInfo ventana;
-	public PantallaMasInfo (VentanaMasInfo ventana) {	
+	public PantallaMasInfo (VentanaMasInfo ventana) {
+		setBackground(new Color(179, 215, 255));	
 		this.ventana = ventana;
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
