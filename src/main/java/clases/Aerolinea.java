@@ -7,12 +7,12 @@ import java.util.LinkedHashSet;
 
 import utils.AeropuertoDAO;
 
-public class Aerolinea extends CosaConNombre{
+public class Aerolinea extends CosaConNombre {
 	private String codigo;
-	
+
 	public Aerolinea(String codigo, String nombre) {
 		super(nombre);
-		this.codigo = codigo;	
+		this.codigo = codigo;
 		LinkedHashSet<String> columnasSelect = new LinkedHashSet<String>();
 		columnasSelect.add("Name");
 		HashMap<String, Object> restricciones = new HashMap<String, Object>();
@@ -23,20 +23,22 @@ public class Aerolinea extends CosaConNombre{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		this.setNombre((String)lista.get(0));
+		if (!lista.isEmpty()) {
+			this.setNombre((String) lista.get(0));
+		}
 	}
-	
+
 	public String getCodigo() {
 		return codigo;
 	}
 
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
-	}	
+	}
 
 	@Override
 	public String toString() {
 		return super.toString() + "codigo: " + codigo;
-	}	
-	
+	}
+
 }

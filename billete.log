@@ -28,3 +28,33 @@ PrimeraClase: false
 Price: 93
 ]
 -------------------------
+
+Billete №20230528190933
+Vuelo: Malaga->Barcelona
+Pasajeros: 
+[
+nombre: 0
+Apellido: 0
+Genero: h
+Numero asiento: 5B
+SalidaDeEmergencia: false
+PrimeraClase: false
+Price: 79
+, 
+nombre: 0
+Apellido: 0
+Genero: h
+Numero asiento: 6C
+SalidaDeEmergencia: false
+PrimeraClase: false
+Price: 79
+, 
+nombre: a
+Apellido: a
+Genero: h
+Numero asiento: 3A
+SalidaDeEmergencia: false
+PrimeraClase: true
+Price: 158
+]
+-------------------------

@@ -170,7 +170,7 @@ public class Vuelo {
 				LocalDateTime salidaLocalDate = LocalDateTime.parse(horaSalida, formatterLocal);
 				LocalDateTime llegadaLocalDate = salidaLocalDate.plusMinutes(duracion);
 
-				Aerolinea aerolinea = new Aerolinea(aerolineaCode, "unknown");
+				Aerolinea aerolinea = new Aerolinea(aerolineaCode, "desconocido");
 
 				Vuelo vuelo = new Vuelo(aerolineaCode + " " + numeroDeVuelo, salida, destino, salidaLocalDate,
 						llegadaLocalDate, new Avion("Boind 737", Avion.generarAsientos(), "B737"), numeroDeTransbordos,

@@ -19,6 +19,8 @@ import java.awt.Dimension;
 import java.awt.Component;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 public class PantallaVerBilletes extends JPanel{
 	private Ventana ventana;
@@ -44,7 +46,18 @@ public class PantallaVerBilletes extends JPanel{
 		
 		contenedorElementos = new JPanel();
 		lista.setViewportView(contenedorElementos);
-		contenedorElementos.setLayout(new BoxLayout(contenedorElementos, BoxLayout.Y_AXIS));
+		GridBagLayout gbl_contenedorElementos = new GridBagLayout();
+		gbl_contenedorElementos.columnWidths = new int[]{0};
+		gbl_contenedorElementos.rowHeights = new int[]{0};
+		gbl_contenedorElementos.columnWeights = new double[]{Double.MIN_VALUE};
+		gbl_contenedorElementos.rowWeights = new double[]{Double.MIN_VALUE};
+		contenedorElementos.setLayout(new GridBagLayout());
+		
+		GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.NORTH;
 		
 		ArrayList<Reserva> reservas = null;
 		try {
@@ -54,7 +67,8 @@ public class PantallaVerBilletes extends JPanel{
 		}
 		
 		for (int i = 0; i < reservas.size(); i++) {
-			contenedorElementos.add(new ElementoBillete(ventana, reservas.get(i)));
+			contenedorElementos.add(new ElementoBillete(ventana, reservas.get(i)), gbc);
+			gbc.gridy++;
 		}
 		
 		JButton botonAtras = new JButton("Atras");

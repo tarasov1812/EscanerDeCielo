@@ -22,7 +22,7 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.border.TitledBorder;
 
-public class PantallaMasInfo extends JPanel{
+public class PantallaMasInfo extends PantallaFondoGris{
 	private VentanaMasInfo ventana;
 	public PantallaMasInfo (VentanaMasInfo ventana) {
 		setBackground(new Color(179, 215, 255));	
