@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -30,6 +31,8 @@ public class VentanaElijirAsiento extends JFrame{
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setContentPane(new PantallaAsiento(this));
+		ImageIcon icon = new ImageIcon("./icono.png");
+        this.setIconImage(icon.getImage());
 		this.setVisible(true);
 	}
 	

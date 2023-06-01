@@ -1,5 +1,6 @@
 package interfaces;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import clases.Cliente;
@@ -15,6 +16,8 @@ public class Ventana extends JFrame{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setContentPane(new PantallaLogin(this));
+		ImageIcon icon = new ImageIcon("./icono.png");
+        this.setIconImage(icon.getImage());
 		this.setVisible(true);
 	}
 	
